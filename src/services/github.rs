@@ -13,7 +13,7 @@ impl GitHubService {
 
     pub async fn get_portfolio_repos(&self) -> Result<Vec<PortfolioRepo>, reqwest::Error> {
         let url = format!(
-            "https://api.github.com/search/repositories?q=user:{}+topic:portfolio",
+            "https://api.github.com/search/repositories?q=user:{}+topic:portfolio+fork:true",
             self.username
         );
 
