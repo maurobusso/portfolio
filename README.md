@@ -4,6 +4,8 @@ Portfolio project inspired by https://github.com/cfereday
 
 A personal portfolio website built with Rust
 
+deployes on render available here: https://portfolio-kvnv.onrender.com
+
 ## ✨ Features
 
 <!-- - **Blog System**: Markdown-powered blog with status tags (draft/complete) -->

@@ -22,10 +22,15 @@ jobs:
       # 2. Install the Rust toolchain
       - name: Install Rust
         uses: dtolnay/rust-toolchain@stable
+        with:
+          components: clippy, rustfmt # Ensure these are installed
 
       # 3. Cache dependencies (Makes the pipeline 2x faster!)
       - name: Rust Cache
         uses: Swatinem/rust-cache@v2
+
+      - name: Run Clippy
+        run: cargo clippy -- -D warnings
 
       # 4. Run the exact same command you ran locally
       - name: Run tests

@@ -11,7 +11,7 @@ pub fn load_blog_posts() -> Vec<BlogPost> {
     for entry in walkdir::WalkDir::new(blog_dir)
         .into_iter()
         .filter_map(|e| e.ok())
-        .filter(|e| e.path().extension().map_or(false, |ext| ext == "md"))
+        .filter(|e| e.path().extension().is_some_and(|ext| ext == "md"))
     {
         let path = entry.path();
         let raw_content = fs::read_to_string(path).unwrap_or_default();
