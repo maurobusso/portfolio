@@ -52,4 +52,5 @@ pub struct GitHubSearchResponse {
 pub struct GitHubService {
     pub client: Client,
     pub username: String,
+    pub base_url: String,
 }

@@ -1,0 +1,37 @@
+name: Rust CI
+
+# Run this pipeline on every push to the 'main' branch
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  test:
+    name: Run Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Download your code from GitHub onto the runner
+      - uses: actions/checkout@v4
+
+      # 2. Install the Rust toolchain
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          components: clippy, rustfmt # Ensure these are installed
+
+      # 3. Cache dependencies (Makes the pipeline 2x faster!)
+      - name: Rust Cache
+        uses: Swatinem/rust-cache@v2
+
+      - name: Run Clippy
+        run: cargo clippy -- -D warnings
+
+      # 4. Run the exact same command you ran locally
+      - name: Run tests
+        run: cargo test --verbose
